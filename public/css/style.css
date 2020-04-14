@@ -120,6 +120,8 @@ p.text {
   padding: 20px 30px;
   background-color: var(--dark-color-a);
   height: 75px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .chat-form-container form {
@@ -151,6 +153,8 @@ p.text {
 .join-main {
   padding: 30px 40px;
   background: var(--dark-color-b);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .join-main p {
