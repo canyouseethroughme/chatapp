@@ -52,6 +52,11 @@ io.on("connection", (socket) => {
     io.to(user.room).emit("message", formatMessage(user.username, escape(msg)));
   });
 
+  // User is typing a message
+  socket.on("typing", (data) => {
+    socket.broadcast.emit("typing", data);
+  });
+
   // Runs when client disconnects
   socket.on("disconnect", () => {
     const user = userLeave(socket.id);

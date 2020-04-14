@@ -109,6 +109,11 @@ a {
   margin-bottom: 7px;
 }
 
+#feedback {
+  position: absolute;
+  bottom: 120px;
+}
+
 p.text {
   color: white;
 }

@@ -2,13 +2,13 @@ const chatForm = document.getElementById("chat-form");
 const chatMessages = document.querySelector(".chat-messages");
 const roomName = document.getElementById("room-name");
 const userList = document.getElementById("users");
+const feedback = document.getElementById("feedback");
+let message = document.getElementById("msg");
 
 // Get username and room from URL
 const { username, room } = Qs.parse(location.search, {
   ignoreQueryPrefix: true,
 });
-
-// console.log(username.length, room);
 
 const socket = io();
 
@@ -47,6 +47,7 @@ chatForm.addEventListener("submit", (e) => {
 
 // Output message to DOM
 function outputMessage(message) {
+  feedback.innerHTML = "";
   const div = document.createElement("div");
   div.classList.add("message");
   div.classList.add(`color-${message.username.length}`);
@@ -58,6 +59,15 @@ function outputMessage(message) {
     `;
   document.querySelector(".chat-messages").appendChild(div);
 }
+
+// User it typing a message
+message.addEventListener("keypress", function () {
+  socket.emit("typing", username);
+});
+
+socket.on("typing", (data) => {
+  feedback.innerHTML = "<p><em>" + data + " is typing a message...</em></p>";
+});
 
 // Add room name to DOM
 function outputRoomName(room) {
